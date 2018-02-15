@@ -9,8 +9,33 @@
  - fn не является функцией (с текстом "fn is not a function")
  Зарпещено использовать встроенные методы для работы с массивами
  */
+
 function isAllTrue(array, fn) {
+ try {
+  if (array.length == 0) {
+   throw new Error("emptyArr");
+  }
+  if (typeof fn != 'function') {
+   throw new Error("not_a_func");
+  }
+ } catch (e) {
+  if (e.message === "emptyArr") {
+   console.error("empty array");
+   return false;
+  } else if (e.message === "not_a_func") {
+   console.error("fn is not a function");
+   return false;
+  }
+ }
+ if(fn(array)) {
+  console.log("Внутри if");
+  return true;
+ }
+ else {
+  return false;
+ }
 }
+
 
 /*
  Задача 2:

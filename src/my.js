@@ -11,35 +11,29 @@ console.log("NODE js working. Tests are started.");
  - fn не является функцией (с текстом "fn is not a function")
  Зарпещено использовать встроенные методы для работы с массивами
  */
-let testArr = [1, "", 9, 3];
+let testArr = [1, "ntcn", 9, 3];
 let testEmptyArr = [];
 
 function Filter(arr) {
- console.log("Внутри фильтер");
  for (let i=0;i < arr.length ;i++) {
 
    if (!arr[i]) {
-    console.log("Ячейки нет");
     return false;
    }
-   console.log("Arr ell" + i + ": " + arr[i]);
  }
  return true;
 }
 
 function isAllTrue(array, fn) {
- console.log("Внутри функции");
    try {
     if (array.length == 0) {
-       console.log("отловили дерьмо");
-       throw new Error("dermo");
+       throw new Error("emptyArr");
     }
     if (typeof fn != 'function') {
-        console.log("не функция");
         throw new Error("not_a_func");
        }
    } catch (e) {
-     if (e.message === "dermo") {
+     if (e.message === "emptyArr") {
       console.error("empty array");
       return false;
      } else if (e.message === "not_a_func") {
@@ -47,19 +41,14 @@ function isAllTrue(array, fn) {
          return false;
      }
    }
-
-    if(fn(array)) {
+  if(fn(array)) {
         console.log("Внутри if");
         return true;
-    }
-
-   else {
-    console.log("Внутри елсе");
+  }
+  else {
     return false;
    }
- //
-
 }
 
 
-console.log("Log: " + isAllTrue(testArr, testEmptyArr));
+console.log("Log: " + isAllTrue(testArr, testArr));
