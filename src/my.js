@@ -11,7 +11,8 @@ console.log("NODE js working. Tests are started.");
  - fn не является функцией (с текстом "fn is not a function")
  Зарпещено использовать встроенные методы для работы с массивами
  */
-let testArr = [1, "text", 9, 3];
+let testArr = [1, 2, "text", 9, 3];
+let testFakeArr = [null, null, ""];
 let testEmptyArr = [];
 
 function Filter(elem) {
@@ -64,5 +65,48 @@ function isAllTrue(array, fn) {
 }
 
 
+/*
+ Задача 2:
+ Функция принимает массив и фильтрующую фукнцию и должна вернуть true или false
+ Функция должна вернуть true если fn вернула true хотя бы для одного из элементов массива
+ Необходимо выбрасывать исключение в случаях:
+ - array не массив или пустой массив (с текстом "empty array")
+ - fn не является функцией (с текстом "fn is not a function")
+ Зарпещено использовать встроенные методы для работы с массивами
+ */
 
-console.log("Log: " + isAllTrue(testArr, Filter));
+//console.log("Log: " + isAllTrue(testArr, Filter));
+
+function isSomeTrue(array, fn) {
+
+    try {
+        if (array.length == 0) {
+            throw new Error("empty array");
+        }
+        if (!(array instanceof Array)) {
+            throw new Error("empty array");
+        }
+        if (typeof fn != 'function') {
+            throw new Error("fn is not a function");
+        }
+    }
+    finally {
+
+    }
+
+    for (let i=0; i<array.length; i++) {
+        if (fn(array[i])) {
+            console.log("Перебираем массив, перебор успешный: " + array[i]);
+            return true;
+        }
+        else {
+            console.log("Элемента нет, попали в елсе: " + array[i]);
+            if (i == (array.length - 1)) {
+                console.log("Последний элемент массива: " + array[i]);
+                return false;
+            }
+        }
+    }
+}
+
+console.log("Log: " + isSomeTrue(testFakeArr, Filter));

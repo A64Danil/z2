@@ -12,7 +12,6 @@
 
 
 function isAllTrue(array, fn) {
- console.log();
 
  try {
   if (array.length == 0) {
@@ -59,6 +58,35 @@ function isAllTrue(array, fn) {
  Зарпещено использовать встроенные методы для работы с массивами
  */
 function isSomeTrue(array, fn) {
+
+    try {
+        if (array.length == 0) {
+            throw new Error("empty array");
+        }
+        if (!(array instanceof Array)) {
+            throw new Error("empty array");
+        }
+        if (typeof fn != 'function') {
+            throw new Error("fn is not a function");
+        }
+    }
+    finally {
+
+    }
+
+    for (let i=0; i<array.length; i++) {
+
+        if (fn(array[i])) {
+            console.log("Перебираем массив, перебор успешный: " + array[i]);
+                return true;
+
+        }
+        else {
+            console.log("Что-то пошло не так, попали в Елсе (фильтер дал елсе): " + array[i]);
+            return false;
+        }
+
+    }
 }
 
 /*
