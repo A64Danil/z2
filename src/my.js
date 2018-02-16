@@ -149,6 +149,71 @@ function returnBadArguments(fn, ...args) {
 
 }
 
+//console.log(returnBadArguments(Filter, 4, 2, 3));
+/*
+ Задача 4:
+ Функция имеет параметр number (по умолчанию - 0)
+ Функция должна вернуть объект, у которого должно быть несколько методов:
+ - sum - складывает number с переданными аргументами
+ - dif - вычитает из number переданные аргументы
+ - div - делит number на первый аргумент. Результат делится на следующий аргумент (если передан) и так далее
+ - mul - умножает number на первый аргумент. Результат умножается на следующий аргумент (если передан) и так далее
+
+ Количество передаваемых в методы аргументов заранее неизвестно
+ Необходимо выбрасывать исключение в случаях:
+ - number не является числом (с текстом "number is not a number")
+ - какой-либо из аргументов div является нулем (с текстом "division by 0")
+ */
+function calculator(number) {
+
+    if (!number) number = 0;
+
+    let obj = {
+        sum: function() {
+            //console.log("Запустили sum");
+            let sumRes = number;
+            for (let i=0; i < arguments.length; i++){
+                sumRes += arguments[i]
+                console.log(arguments[i]);
+            }
+            return sumRes;
+        },
+        dif: function() {
+            //console.log("Запустили dif");
+            let difRes = number;
+            for (let i=0; i < arguments.length; i++){
+                difRes -= arguments[i]
+                console.log(arguments[i]);
+            }
+            return difRes;
+        },
+        div: function() {
+            //console.log("Запустили dif");
+            let divRes = number;
+            for (let i=0; i < arguments.length; i++){
+                console.log(divRes + " делим на " + arguments[i]);
+                divRes = ( divRes / arguments[i]);
+            }
+            return divRes;
+        },
+        mul: function() {
+            //console.log("Запустили dif");
+            let mulRes = number;
+            for (let i=0; i < arguments.length; i++){
+                console.log(mulRes + " умножаем на " + arguments[i]);
+                mulRes = ( mulRes * arguments[i]);
+            }
+            return mulRes;
+        }
+    }
+
+    return obj;
+}
+
+var res = calculator(10);
+//console.log(res.sum(5,2,3));
+console.log(calculator(20).div(5,2));
+console.log(calculator(2).mul(3,4));
 
 
-console.log(returnBadArguments(Filter, 4, 2, 3));
+//console.log(returnBadArguments(Filter, 4, 2, 3));
