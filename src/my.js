@@ -124,9 +124,7 @@ function isSomeTrue(array, fn) {
 
  */
 function returnBadArguments(fn, ...args) {
-    console.log(args);
     var finMassiv = [];
-    var pushed = [];
 
     try {
         if (typeof fn != 'function') {
@@ -138,16 +136,11 @@ function returnBadArguments(fn, ...args) {
 
     for (let i=0; i<args.length; i++) {
         try {
-            if (typeof fn(args[i]) != 'function') {
-                throw new Error("fn is not a function");
-            }
+             fn(args[i]);
         }
         catch(e) {
             finMassiv[i] = args[i];
-            //console.log(e.message);
             console.log(" finMassiv["+ i +"]: " +  finMassiv[i]);
-            //pushed  = finMassiv.push(args[i]);
-            //console.log("Хи: " + pushed + ", " + args[i]);
         }
 
     }
@@ -158,4 +151,4 @@ function returnBadArguments(fn, ...args) {
 
 
 
-console.log(returnBadArguments(Filter));
+console.log(returnBadArguments(Filter, 4, 2, 3));
