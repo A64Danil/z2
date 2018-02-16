@@ -123,7 +123,10 @@ function isSomeTrue(array, fn) {
  -- должна вернуть массив пустой массив, если не передано дополнительных аргументов
 
  */
-function returnBadArguments(fn) {
+function returnBadArguments(fn, ...args) {
+    console.log(args);
+    var finMassiv = [];
+    var pushed = [];
 
     try {
         if (typeof fn != 'function') {
@@ -132,10 +135,27 @@ function returnBadArguments(fn) {
     }
     finally {
     }
-    return true;
+
+    for (let i=0; i<args.length; i++) {
+        try {
+            if (typeof fn(args[i]) != 'function') {
+                throw new Error("fn is not a function");
+            }
+        }
+        catch(e) {
+            finMassiv[i] = args[i];
+            //console.log(e.message);
+            console.log(" finMassiv["+ i +"]: " +  finMassiv[i]);
+            //pushed  = finMassiv.push(args[i]);
+            //console.log("Хи: " + pushed + ", " + args[i]);
+        }
+
+    }
+
+    return finMassiv;
 
 }
 
 
 
-//console.log("Log: " + isSomeTrue(testFakeArr, Filter));
+console.log(returnBadArguments(Filter));
