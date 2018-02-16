@@ -137,7 +137,67 @@ function returnBadArguments(fn, ...args) {
  - number не является числом (с текстом "number is not a number")
  - какой-либо из аргументов div является нулем (с текстом "division by 0")
  */
-function calculator() {
+function calculator(number) {
+    try {
+        if (typeof number != 'number') {
+            throw new Error("number is not a number");
+        }
+    }
+    finally {
+    }
+
+
+    if (!number) number = 0;
+
+    let obj = {
+        sum: function() {
+            //console.log("Запустили sum");
+            let sumRes = number;
+            for (let i=0; i < arguments.length; i++){
+                sumRes += arguments[i]
+                console.log(arguments[i]);
+            }
+            return sumRes;
+        },
+        dif: function() {
+            //console.log("Запустили dif");
+            let difRes = number;
+            for (let i=0; i < arguments.length; i++){
+                difRes -= arguments[i]
+                console.log(arguments[i]);
+            }
+            return difRes;
+        },
+        div: function() {
+            //console.log("Запустили dif");
+            let divRes = number;
+            for (let i=0; i < arguments.length; i++){
+
+                try {
+                    if (arguments[i] == 0) {
+                        throw new Error("division by 0");
+                    }
+                }
+                finally {
+                }
+
+                console.log(divRes + " делим на " + arguments[i]);
+                divRes = ( divRes / arguments[i]);
+            }
+            return divRes;
+        },
+        mul: function() {
+            //console.log("Запустили dif");
+            let mulRes = number;
+            for (let i=0; i < arguments.length; i++){
+                console.log(mulRes + " умножаем на " + arguments[i]);
+                mulRes = ( mulRes * arguments[i]);
+            }
+            return mulRes;
+        }
+    }
+
+    return obj;
 }
 
 export {
