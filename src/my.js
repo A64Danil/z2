@@ -11,44 +11,58 @@ console.log("NODE js working. Tests are started.");
  - fn не является функцией (с текстом "fn is not a function")
  Зарпещено использовать встроенные методы для работы с массивами
  */
-let testArr = [1, "ntcn", 9, 3];
+let testArr = [1, "text", 9, 3];
 let testEmptyArr = [];
 
-function Filter(arr) {
- for (let i=0;i < arr.length ;i++) {
-
-   if (!arr[i]) {
-    return false;
+function Filter(elem) {
+   //console.log(elem);
+   if (elem) {
+       return true;
    }
- }
- return true;
+    else {
+       console.warn("Фильтер выдал Елсе");
+       return false;
+   }
 }
+
 
 function isAllTrue(array, fn) {
-   try {
-    if (array.length == 0) {
-       throw new Error("emptyArr");
+    console.log();
+
+    try {
+        if (array.length == 0) {
+            throw new Error("empty array");
+        }
+        if (!(array instanceof Array)) {
+            throw new Error("empty array");
+        }
+        if (typeof fn != 'function') {
+            throw new Error("fn is not a function");
+        }
     }
-    if (typeof fn != 'function') {
-        throw new Error("not_a_func");
-       }
-   } catch (e) {
-     if (e.message === "emptyArr") {
-      console.error("empty array");
-      return false;
-     } else if (e.message === "not_a_func") {
-         console.error("fn is not a function");
-         return false;
-     }
-   }
-  if(fn(array)) {
-        console.log("Внутри if");
-        return true;
-  }
-  else {
-    return false;
-   }
+    finally {
+
+    }
+
+    for (let i=0; i<array.length; i++) {
+
+        if (fn(array[i])) {
+            console.log("Перебираем массив, перебор успешный: " + array[i]);
+            if (i == (array.length - 1)) {
+                console.log("Последний элемент массива: " + array[i]);
+                return true;
+            }
+
+        }
+        else {
+            console.log("Что-то пошло не так, попали в Елсе (фильтер дал елсе): " + array[i]);
+            return false;
+        }
+
+    }
+
 }
 
 
-console.log("Log: " + isAllTrue(testArr, testArr));
+
+console.log("Log: " + isAllTrue(testArr, Filter));

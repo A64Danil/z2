@@ -10,23 +10,29 @@
  Зарпещено использовать встроенные методы для работы с массивами
  */
 
+
 function isAllTrue(array, fn) {
  try {
   if (array.length == 0) {
-   throw new Error("emptyArr");
+   throw new Error("empty array");
+  }
+  if (typeof array != 'array') {
+   throw new Error("empty array");
   }
   if (typeof fn != 'function') {
-   throw new Error("not_a_func");
-  }
- } catch (e) {
-  if (e.message === "emptyArr") {
-   console.error("empty array");
-   return false;
-  } else if (e.message === "not_a_func") {
-   console.error("fn is not a function");
-   return false;
+   throw new Error("fn is not a function");
   }
  }
+ finally {
+
+ }
+
+ for (let i=0; i<array.length; i++) {
+  console.log("Перебираем массив");
+  array[i].fn;
+ }
+
+
  if(fn(array)) {
   console.log("Внутри if");
   return true;
