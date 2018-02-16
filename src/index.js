@@ -75,17 +75,17 @@ function isSomeTrue(array, fn) {
     }
 
     for (let i=0; i<array.length; i++) {
-
         if (fn(array[i])) {
             console.log("Перебираем массив, перебор успешный: " + array[i]);
-                return true;
-
+            return true;
         }
         else {
-            console.log("Что-то пошло не так, попали в Елсе (фильтер дал елсе): " + array[i]);
-            return false;
+            console.log("Элемента нет, попали в елсе: " + array[i]);
+            if (i == (array.length - 1)) {
+                console.log("Последний элемент массива: " + array[i]);
+                return false;
+            }
         }
-
     }
 }
 
