@@ -12,11 +12,13 @@
 
 
 function isAllTrue(array, fn) {
+ console.log();
+
  try {
   if (array.length == 0) {
    throw new Error("empty array");
   }
-  if (typeof array != 'array') {
+  if (!(array instanceof Array)) {
    throw new Error("empty array");
   }
   if (typeof fn != 'function') {
@@ -28,18 +30,22 @@ function isAllTrue(array, fn) {
  }
 
  for (let i=0; i<array.length; i++) {
-  console.log("Перебираем массив");
-  array[i].fn;
+
+  if (fn(array[i])) {
+   console.log("Перебираем массив, перебор успешный: " + array[i]);
+   if (i == (array.length - 1)) {
+    console.log("Последний элемент массива: " + array[i]);
+    return true;
+   }
+
+  }
+  else {
+   console.log("Что-то пошло не так, попали в Елсе (фильтер дал елсе): " + array[i]);
+   return false;
+  }
+
  }
 
-
- if(fn(array)) {
-  console.log("Внутри if");
-  return true;
- }
- else {
-  return false;
- }
 }
 
 
