@@ -137,21 +137,17 @@ function returnBadArguments(fn, ...args) {
  - number не является числом (с текстом "number is not a number")
  - какой-либо из аргументов div является нулем (с текстом "division by 0")
  */
-function calculator(number) {
-    try {
-        if (typeof number != 'number') {
-            throw new Error("number is not a number");
-        }
-    }
-    finally {
+function calculator(number = 0) {
+    console.log(number);
+
+    if (typeof number != 'number') {
+        throw new Error("number is not a number");
     }
 
-
-    if (!number) number = 0;
 
     let obj = {
         sum: function() {
-            //console.log("Запустили sum");
+            console.log("Запустили sum");
             let sumRes = number;
             for (let i=0; i < arguments.length; i++){
                 sumRes += arguments[i]
@@ -160,7 +156,7 @@ function calculator(number) {
             return sumRes;
         },
         dif: function() {
-            //console.log("Запустили dif");
+            console.log("Запустили dif");
             let difRes = number;
             for (let i=0; i < arguments.length; i++){
                 difRes -= arguments[i]
@@ -169,16 +165,12 @@ function calculator(number) {
             return difRes;
         },
         div: function() {
-            //console.log("Запустили dif");
+            console.log("Запустили div");
             let divRes = number;
             for (let i=0; i < arguments.length; i++){
 
-                try {
-                    if (arguments[i] == 0) {
-                        throw new Error("division by 0");
-                    }
-                }
-                finally {
+                if (arguments[i] == 0) {
+                    throw new Error("division by 0");
                 }
 
                 console.log(divRes + " делим на " + arguments[i]);
@@ -187,7 +179,7 @@ function calculator(number) {
             return divRes;
         },
         mul: function() {
-            //console.log("Запустили dif");
+            console.log("Запустили mul");
             let mulRes = number;
             for (let i=0; i < arguments.length; i++){
                 console.log(mulRes + " умножаем на " + arguments[i]);
